@@ -1,26 +1,165 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand tokens — exact Figma */
+  --orange: #ec6436;
+  --green: #00a184;
+  --blue: #81d4da;
+  --yellow: #febf2c;
+  --purple: #7d7ebc;
+  --cream: #f0eeea;
+  --ink: #14110f;
+  --ink-soft: #2a2520;
+  --paper: #ffffff;
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+
+  /* Soft shadow tokens — urban trail brand */
+  --shadow-soft-sm: 0 1px 2px rgba(20, 17, 15, 0.04), 0 1px 3px rgba(20, 17, 15, 0.06);
+  --shadow-soft: 0 4px 12px rgba(20, 17, 15, 0.06), 0 2px 4px rgba(20, 17, 15, 0.04);
+  --shadow-soft-lg: 0 12px 32px rgba(20, 17, 15, 0.08), 0 4px 8px rgba(20, 17, 15, 0.04);
+  --shadow-soft-xl: 0 24px 48px rgba(20, 17, 15, 0.10), 0 8px 16px rgba(20, 17, 15, 0.06);
+
+  /* Radius scale */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-2xl: 40px;
+  --radius-pill: 9999px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-orange: #ec6436;
+  --color-green: #00a184;
+  --color-blue: #81d4da;
+  --color-yellow: #febf2c;
+  --color-purple: #7d7ebc;
+  --color-cream: #f0eeea;
+  --color-ink: #14110f;
+  --color-paper: #ffffff;
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html, body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-marquee-slow { animation: marquee 80s linear infinite; }
+.animate-marquee:hover, .animate-marquee-slow:hover { animation-play-state: paused; }
+
+/* Dashed route line — running tracé that travels along its path */
+@keyframes route-flow {
+  to { stroke-dashoffset: -32; }
+}
+.animate-route { stroke-dasharray: 2 14; animation: route-flow 1.6s linear infinite; }
+
+/* Pulse the kilometre marker */
+@keyframes km-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.06); opacity: 0.88; }
+}
+.animate-km { animation: km-pulse 2.4s ease-in-out infinite; }
+
+/* Ticker number flip */
+@keyframes ticker-flip {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
+}
+
+/* Pulse ring (for live counter dots) */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.pulse-ring::after {
+  content: ""; position: absolute; inset: 0; border-radius: 9999px;
+  border: 2px solid currentColor; animation: pulse-ring 1.8s ease-out infinite;
+}
+
+/* Image hover route overlay */
+.route-overlay { background-image:
+  radial-gradient(circle at 20% 80%, rgba(236,100,54,0) 0, rgba(236,100,54,0.55) 80%),
+  url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path d='M20 180 C 60 120, 120 140, 180 40' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-dasharray='2 10'/></svg>");
+  background-size: cover, 80%;
+  background-position: center, center;
+  background-repeat: no-repeat;
+}
+
+/* Mascot bounce */
+@keyframes mascot-bounce {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.animate-mascot { animation: mascot-bounce 5s ease-in-out infinite; }
+
+/* Subtle banner drift */
+@keyframes banner-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-3%, 2%, 0) scale(1.05); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+.animate-banner { animation: banner-drift 18s ease-in-out infinite; }
+
+/* Soft shadow utilities */
+.shadow-soft-sm { box-shadow: var(--shadow-soft-sm); }
+.shadow-soft { box-shadow: var(--shadow-soft); }
+.shadow-soft-lg { box-shadow: var(--shadow-soft-lg); }
+.shadow-soft-xl { box-shadow: var(--shadow-soft-xl); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(20,17,15,.12); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(20,17,15,.25); }
+
+/* Display — Bungee */
+.font-display {
+  font-family: var(--font-display), "Bungee", Impact, sans-serif;
+  letter-spacing: 0;
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+/* Body — Open Sans */
+.font-body { font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif; }
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
