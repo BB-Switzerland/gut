@@ -21,18 +21,20 @@ export type Race = {
 };
 
 export const RACES: Race[] = [
-  { id: "16km", title: "Le Grand Trail", distance: "16 KM", km: 16, type: "Running", audience: "Adultes", color: "#ec6436", elevation: "+450 m", duration: "≈ 1h45", start: "18h00", tags: ["Running"], photo: "/figma/photo-race-1.jpg" },
-  { id: "16km-relais", title: "Relais Entreprise", distance: "16 KM RELAIS", km: 16, type: "Relais", audience: "Entreprises", color: "#7d7ebc", elevation: "+450 m", duration: "≈ 1h50", start: "18h00", tags: ["Relais", "Éco-responsable"], photo: "/figma/photo-runners-1.jpg" },
-  { id: "9km", title: "L'Urbain", distance: "9 KM", km: 9, type: "Running", audience: "Adultes", color: "#00a184", elevation: "+220 m", duration: "≈ 55 min", start: "18h30", tags: ["Running"], photo: "/figma/photo-race-2.jpg" },
-  { id: "6km", title: "La Découverte", distance: "6 KM", km: 6, type: "Walking", audience: "Familles", color: "#81d4da", elevation: "+120 m", duration: "≈ 1h15", start: "19h00", tags: ["Running", "Walking"], photo: "/figma/photo-race-3.jpg" },
-  { id: "3km-kid", title: "Mini-Trail Junior", distance: "3 KM", km: 3, type: "Running", audience: "Enfants", color: "#febf2c", elevation: "+60 m", duration: "≈ 25 min", start: "17h30", tags: ["Running", "Enfants"], photo: "/figma/photo-race-1.jpg" },
-  { id: "1km-kid", title: "Mini-Trail Kids", distance: "1 KM", km: 1, type: "Running", audience: "Enfants", color: "#febf2c", elevation: "—", duration: "≈ 8 min", start: "17h15", tags: ["Running", "Enfants"], photo: "/figma/photo-race-3.jpg" },
-  { id: "1km-parent", title: "Parents / Enfants", distance: "1 KM", km: 1, type: "Walking", audience: "Familles", color: "#ec6436", elevation: "—", duration: "≈ 15 min", start: "17h00", tags: ["Walking", "Famille"], photo: "/figma/photo-race-3.jpg" },
+  { id: "16km",                  title: "16 KM Trail",                 distance: "16 KM",                km: 16, type: "Running", audience: "Adultes",     color: "#ec6436", elevation: "Trail urbain",     duration: "Dès 18 ans",   start: "18h35", tags: ["Running", "Trail"],            photo: "/figma/photo-race-1.jpg" },
+  { id: "16km-relais",           title: "16 KM Relais à 2",            distance: "16 KM RELAIS",         km: 16, type: "Relais",  audience: "Adultes",     color: "#7d7ebc", elevation: "10,2 + 5,8 km",    duration: "Dès 18 ans",   start: "18h35", tags: ["Relais"],                      photo: "/figma/photo-runners-1.jpg" },
+  { id: "16km-relais-entreprises", title: "16 KM Relais Entreprises",  distance: "16 KM RELAIS",         km: 16, type: "Relais",  audience: "Entreprises", color: "#7d7ebc", elevation: "Challenge B2B",    duration: "Dès 18 ans",   start: "18h35", tags: ["Relais", "Entreprises"],       photo: "/figma/photo-info-2.jpg" },
+  { id: "9km",                   title: "9 KM Trail Running",          distance: "9 KM",                 km: 9,  type: "Running", audience: "Adultes",     color: "#00a184", elevation: "Trail urbain",     duration: "Dès 16 ans",   start: "18h25", tags: ["Running"],                     photo: "/figma/photo-race-2.jpg" },
+  { id: "6km",                   title: "6 KM Running & Walking",      distance: "6 KM",                 km: 6,  type: "Walking", audience: "Familles",    color: "#81d4da", elevation: "Patrimoine GE",    duration: "Dès 10/16 ans",start: "18h30", tags: ["Running", "Walking"],          photo: "/figma/photo-race-3.jpg" },
+  { id: "4-6km-pmr",             title: "4,6 KM Parcours adapté",      distance: "4,6 KM",               km: 4,  type: "Walking", audience: "Familles",    color: "#94d2d8", elevation: "Mobilité réduite", duration: "PMR",          start: "18h35", tags: ["PMR", "Walking"],              photo: "/figma/photo-info-1.jpg" },
+  { id: "3km-plogging",          title: "3 KM GUT Plogging Challenge", distance: "3 KM",                 km: 3,  type: "Running", audience: "Entreprises", color: "#00a184", elevation: "Éco-responsable",  duration: "Équipes",      start: "16h00", tags: ["Running", "Éco-responsable"],  photo: "/figma/photo-info-3.jpg" },
+  { id: "1km-parent",            title: "1 KM Parents / Enfants",      distance: "1 KM",                 km: 1,  type: "Walking", audience: "Familles",    color: "#ec6436", elevation: "Bois de la Bâtie", duration: "4–7 ans",      start: "17h00", tags: ["Famille", "Enfants"],          photo: "/figma/photo-race-3.jpg" },
+  { id: "1km-kid",               title: "1 KM Enfants",                distance: "1 KM",                 km: 1,  type: "Running", audience: "Enfants",     color: "#febf2c", elevation: "Bois de la Bâtie", duration: "4–9 ans",      start: "17h00", tags: ["Running", "Enfants"],          photo: "/figma/photo-info-3.jpg" },
 ];
 
 const TYPE_OPTIONS = ["Types de courses", "Running", "Walking", "Relais"] as const;
 const AUDIENCE_OPTIONS = ["Tous publics", "Adultes", "Enfants", "Familles", "Entreprises"] as const;
-const DISTANCE_OPTIONS = ["Toutes distances", "1 KM", "3 KM", "6 KM", "9 KM", "16 KM"] as const;
+const DISTANCE_OPTIONS = ["Toutes distances", "1 KM", "3 KM", "4,6 KM", "6 KM", "9 KM", "16 KM"] as const;
 
 export function RacesSlider({ showFilters = true }: { showFilters?: boolean }) {
   const [type, setType] = useState<(typeof TYPE_OPTIONS)[number]>("Types de courses");
@@ -212,13 +214,15 @@ export function RaceCard({ race }: { race: Race }) {
 
 function describe(id: string) {
   const map: Record<string, string> = {
-    "16km": "Ascension de la Treille, sentiers cachés des Bastions, vues panoramiques sur le Léman.",
-    "16km-relais": "Le 16 KM en relais à 2 — passage au cœur des Bastions, classement entreprises dédié.",
-    "9km": "Ruelles pavées du Bourg-de-Four, bord du Rhône, traversée nocturne de la Vieille-Ville.",
-    "6km": "Cathédrale Saint-Pierre, promenade des Bastions, accessible à toutes et tous.",
-    "3km-kid": "Parcours sécurisé dans le parc des Bastions, ravitaillement gourmand à l'arrivée.",
-    "1km-kid": "Premier vrai dossard solo pour les 6-9 ans, encadrement bénévoles renforcé.",
-    "1km-parent": "Un kilomètre festif main dans la main avec un parent. Dossard et médaille pour tous.",
+    "16km": "Bois de la Bâtie, pont Butin, falaises de Saint-Jean, Vieille-Ville et patrimoine genevois.",
+    "16km-relais": "16 KM en relais à 2 — passage Place du Bourg-de-Four au sommet de la Vieille-Ville.",
+    "16km-relais-entreprises": "Le challenge inter-entreprises, classement dédié et collation à l'espace VIP.",
+    "9km": "Boucle Bois de la Bâtie ↔ Vieille-Ville, sentiers méconnus le long du Rhône.",
+    "6km": "Patrimoine genevois en running ou walking au départ de la Bibliothèque de la Cité.",
+    "4-6km-pmr": "Parcours adapté aux personnes en mobilité réduite, départ Place de l'Île.",
+    "3km-plogging": "L'unique course éco-responsable de ramassage de mégots au cœur de Genève.",
+    "1km-parent": "1 km festif main dans la main avec un parent. Médaille pour tous les arrivants.",
+    "1km-kid": "Première course solo pour les 4-9 ans, boucle ombragée du Bois de la Bâtie.",
   };
   return map[id] ?? "Parcours nature & bitume au cœur de la Vieille-Ville et des sentiers cachés de Genève.";
 }

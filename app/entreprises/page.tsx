@@ -3,10 +3,11 @@ import Image from "next/image";
 import { Banner } from "../components/banner";
 import { PartnersMarquee } from "../components/partners-marquee";
 import { SectionHeader } from "../components/section-header";
-import { VillageReveal } from "../components/village-reveal";
 import { EntreprisesHeroVisual } from "../components/hero-visuals";
-import { ArrowRight, Award, Crown, ExternalLink, Leaf, Recycle, Trees, Utensils } from "lucide-react";
+import { ArrowRight, Crown, Recycle, Trophy, Users } from "lucide-react";
 import { INSCRIPTION_URL } from "../../lib/utils";
+
+const REGISTRATION_EMAIL = "inscription@runningeneva.ch";
 
 export const metadata = { title: "Entreprises — Genève Urban Trail" };
 
@@ -14,183 +15,151 @@ export default function EntreprisesPage() {
   return (
     <>
       <Banner
-        eyebrow="Édition entreprises 2026"
-        title={<>Le team-building <span className="text-orange">grandeur nature</span></>}
-        subtitle="Relais entreprise, challenge collectif, espace VIP et plogging : 4 façons de fédérer vos équipes autour d'un événement local et engagé."
+        eyebrow="Samedi 05 septembre 2026"
+        title={<>Genève et sa <span className="text-orange">Vieille-Ville</span><br /> hors des sentiers battus !</>}
+        subtitle="Deux formats taillés pour vos équipes : le Relais 16 KM Entreprises et le GUT Plogging Challenge."
         accent="green"
         buttons={[
           { label: "Programme 2026", href: "/evenement", color: "orange" },
-          { label: "Plaquette PDF", href: "#plaquette", color: "green" },
         ]}
         visual={<EntreprisesHeroVisual />}
       />
 
+      {/* SECTION 16 KM Relais Entreprises */}
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <SectionHeader
-            eyebrow="Vos formats"
-            title={<>Le <span className="text-orange">Relais 16 KM</span>, signature de la GUT entreprises.</>}
-            description="Deux runners, un seul dossard partagé. Le format star de la GUT pour les équipes : tactique, fédérateur, festif."
-            accent="purple"
-          />
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-6 relative aspect-[4/3] rounded-[32px] overflow-hidden shadow-soft-lg">
+              <Image src="/figma/photo-runners-1.jpg" alt="" fill className="object-cover" sizes="(max-width:1024px) 90vw, 45vw" />
+            </div>
 
-          <div className="mt-12 grid lg:grid-cols-3 gap-5">
-            <CompanyRace
-              tags={["Relais", "Entreprises"]}
-              title="Relais 16 KM"
-              description="Équipes de 2. Passage de relais au cœur du parc des Bastions, classement Entreprises séparé."
-              color="#7d7ebc"
-              photo="/figma/photo-runners-1.jpg"
-              ctaHref={INSCRIPTION_URL}
-            />
-            <CompanyRace
-              tags={["Running", "Éco-responsable"]}
-              title="Plogging Challenge"
-              description="Courez en ramassant les déchets : un format unique mêlant performance et engagement."
-              color="#00a184"
-              photo="/figma/photo-info-3.jpg"
-              ctaHref={INSCRIPTION_URL}
-            />
-            <CompanyRace
-              tags={["Team-building"]}
-              title="Pack Team-Building"
-              description="9 KM + soirée privée + espace VIP. La formule complète pour vos équipes."
-              color="#ec6436"
-              photo="/figma/photo-info-2.jpg"
-              ctaHref={INSCRIPTION_URL}
-            />
+            <div className="lg:col-span-6">
+              <p className="text-[11px] uppercase tracking-[0.22em] font-bold text-purple mb-3">Format signature</p>
+              <h2 className="font-display text-3xl md:text-5xl text-ink leading-[0.95]">
+                16 KM <span className="text-orange">Relais Entreprises</span>
+              </h2>
+
+              <div className="mt-6 space-y-4 text-ink/80 leading-relaxed">
+                <p>
+                  Renforcez la cohésion de vos équipes à travers le Challenge inter-entreprises, une expérience
+                  sportive et conviviale de 16 km, tout en (re)découvrant Genève entre nature, patrimoine et
+                  passages méconnus.
+                </p>
+                <p>
+                  Par équipe de 2, ce relais permet de vivre un parcours trail accessible mais exigeant, idéal
+                  pour porter les couleurs de votre entreprise.
+                </p>
+              </div>
+
+              <div className="mt-6 grid sm:grid-cols-2 gap-4">
+                <div className="rounded-2xl bg-cream p-5">
+                  <span className="inline-grid place-items-center h-10 w-10 rounded-xl bg-yellow text-ink mb-3">
+                    <Crown className="h-5 w-5" />
+                  </span>
+                  <h3 className="font-display text-base text-ink">Espace VIP</h3>
+                  <p className="mt-1 text-xs text-ink/70 leading-relaxed">Chaque participant bénéficiera d'une collation à l'espace VIP.</p>
+                </div>
+                <div className="rounded-2xl bg-cream p-5">
+                  <span className="inline-grid place-items-center h-10 w-10 rounded-xl bg-purple text-white mb-3">
+                    <Trophy className="h-5 w-5" />
+                  </span>
+                  <h3 className="font-display text-base text-ink">Challenge entreprises</h3>
+                  <p className="mt-1 text-xs text-ink/70 leading-relaxed">Classement dédié : récompenses pour les 3 meilleures équipes (hommes, femmes, mixtes).</p>
+                </div>
+              </div>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <Link href={`mailto:${REGISTRATION_EMAIL}`} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-orange text-white font-bold uppercase tracking-wider text-xs shadow-soft hover:brightness-110 transition">
+                  Inscrire mon équipe <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link href="/epreuves" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-ink shadow-soft font-bold uppercase tracking-wider text-xs">
+                  Détail de l'épreuve
+                </Link>
+              </div>
+            </div>
           </div>
+
+          {/* SLIDER 16 KM — 4 keywords */}
+          <KeywordSlider
+            title="Pourquoi le 16 KM Relais ?"
+            items={[
+              { label: "Teambuilding", color: "#ec6436" },
+              { label: "Challenge sportif", color: "#00a184" },
+              { label: "Animations Village Départ", color: "#febf2c" },
+              { label: "Networking Espace VIP", color: "#7d7ebc" },
+            ]}
+          />
         </div>
       </section>
 
-      <section className="py-20 md:py-28 bg-blue/30">
+      {/* SECTION GUT Plogging Challenge */}
+      <section className="py-20 md:py-28 bg-green/15">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5">
-              <SectionHeader
-                eyebrow="Challenge Entreprise"
-                title={<>Faites jouer <span className="text-orange">vos équipes</span>.</>}
-                description="Le Challenge Entreprise classe les sociétés selon le cumul des temps de leurs équipes. À la clé : un trophée et un an de visibilité chez nos partenaires."
-                accent="blue"
-              />
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href={INSCRIPTION_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-orange text-white font-bold uppercase tracking-wider text-xs shadow-soft hover:brightness-110 transition">
-                  Inscrire mon entreprise <ArrowRight className="h-4 w-4" />
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-6 order-2 lg:order-1">
+              <p className="text-[11px] uppercase tracking-[0.22em] font-bold text-green mb-3">Course éco-responsable</p>
+              <h2 className="font-display text-3xl md:text-5xl text-ink leading-[0.95]">
+                GUT <span className="text-green">Plogging Challenge</span>
+              </h2>
+
+              <div className="mt-6 space-y-4 text-ink/80 leading-relaxed">
+                <p>
+                  Prends le départ de l'unique course éco-responsable de ramassage de mégots au cœur de la ville
+                  de Genève, au sein du village du Geneva Urban Trail.
+                </p>
+                <p>
+                  Entre collègues, vis une expérience engagée et conviviale en contribuant concrètement à
+                  préserver notre ville… et relève le défi du challenge Entreprises en ramassant un maximum de
+                  mégots pour monter sur le podium !
+                </p>
+              </div>
+
+              <div className="mt-6 grid sm:grid-cols-2 gap-4">
+                <div className="rounded-2xl bg-white p-5 shadow-soft-sm">
+                  <span className="inline-grid place-items-center h-10 w-10 rounded-xl bg-yellow text-ink mb-3">
+                    <Users className="h-5 w-5" />
+                  </span>
+                  <h3 className="font-display text-base text-ink">Espace VIP</h3>
+                  <p className="mt-1 text-xs text-ink/70 leading-relaxed">
+                    À partir de 17h30 : moment d'échange et de networking inter-entreprises autour d'une collation.
+                  </p>
+                </div>
+                <div className="rounded-2xl bg-white p-5 shadow-soft-sm">
+                  <span className="inline-grid place-items-center h-10 w-10 rounded-xl bg-green text-white mb-3">
+                    <Recycle className="h-5 w-5" />
+                  </span>
+                  <h3 className="font-display text-base text-ink">Challenge inter-entreprises</h3>
+                  <p className="mt-1 text-xs text-ink/70 leading-relaxed">
+                    Remise de prix podium pour les 3 équipes ayant ramassé la plus grande quantité de mégots.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <Link href={`mailto:${REGISTRATION_EMAIL}`} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-green text-white font-bold uppercase tracking-wider text-xs shadow-soft hover:brightness-110 transition">
+                  Inscrire mes collaborateurs <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a id="plaquette" href="#" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-ink font-bold uppercase tracking-wider text-xs shadow-soft hover:shadow-soft-lg transition">
-                  Plaquette PDF <ExternalLink className="h-4 w-4" />
-                </a>
+                <Link href="/epreuves" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-ink shadow-soft font-bold uppercase tracking-wider text-xs">
+                  Plus d'informations
+                </Link>
               </div>
             </div>
 
-            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4 items-stretch">
-              {[
-                { title: "Espace VIP", body: "Terrasse privative, vestiaire dédié, vue village.", color: "#febf2c", icon: <Crown className="h-5 w-5" /> },
-                { title: "Repas dînatoire", body: "Buffet du terroir, vins genevois, dessert signature.", color: "#ec6436", icon: <Utensils className="h-5 w-5" /> },
-                { title: "Trophée Entreprise", body: "Classement officiel + visibilité chez nos partenaires.", color: "#00a184", icon: <Award className="h-5 w-5" /> },
-                { title: "Plogging Challenge", body: "Bonus pour les déchets ramassés en course.", color: "#7d7ebc", icon: <Recycle className="h-5 w-5" /> },
-              ].map((c) => (
-                <div key={c.title} className="h-full flex flex-col rounded-3xl bg-white p-6 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition">
-                  <div className="inline-grid place-items-center h-12 w-12 rounded-2xl text-white shadow-soft-sm shrink-0" style={{ background: c.color }}>
-                    {c.icon}
-                  </div>
-                  <h3 className="mt-5 font-display text-xl text-ink">{c.title}</h3>
-                  <p className="mt-2 text-sm text-ink/65 leading-relaxed">{c.body}</p>
-                </div>
-              ))}
+            <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/3] rounded-[32px] overflow-hidden shadow-soft-lg">
+              <Image src="/figma/photo-info-3.jpg" alt="" fill className="object-cover" sizes="(max-width:1024px) 90vw, 45vw" />
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <SectionHeader
-            eyebrow="Jour J"
-            title={<>Une ambiance <span className="text-orange">conviviale</span>.</>}
-            description="Animations, repas et engagement éco-responsable : la GUT entreprise, c'est une journée complète, soignée, fédératrice."
+          {/* SLIDER GUT PLOGGING — 4 keywords */}
+          <KeywordSlider
+            title="Pourquoi le Plogging Challenge ?"
+            items={[
+              { label: "Geste éco-responsable", color: "#00a184" },
+              { label: "Engagement citoyen", color: "#ec6436" },
+              { label: "Préservation du territoire", color: "#81d4da" },
+              { label: "Networking Espace VIP", color: "#7d7ebc" },
+            ]}
           />
-
-          <div className="mt-12">
-            <VillageReveal
-              items={[
-                { title: "Animations", caption: "Ambiance", color: "#ec6436", photo: "/figma/photo-village-1.jpg",
-                  body: <>DJ sets, scène ouverte, photographe officiel pour votre équipe. Souvenir garanti.</> },
-                { title: "Repas", caption: "Saveurs locales", color: "#00a184", photo: "/figma/photo-village-2.jpg",
-                  body: <ul className="space-y-1.5"><li>• Assiette genevoise terroir</li><li>• Salade fraîcheur 100% local</li><li>• Buffet desserts maison</li></ul> },
-                { title: "Convivialité", caption: "Esprit d'équipe", color: "#7d7ebc", photo: "/figma/photo-info-2.jpg",
-                  body: <>Espace lounge privatif, photographe team-building, animation interactive.</> },
-                { title: "Éco-responsable", caption: "Engagement", color: "#81d4da", photo: "/figma/photo-info-3.jpg",
-                  body: <>Zéro plastique jetable, ravitaillement vrac, T-shirts en coton bio recyclé.</> },
-              ]}
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-28 bg-orange/15" id="tarifs">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <SectionHeader
-            eyebrow="Tarifs entreprises"
-            title={<>Des packs <span className="text-orange">clairs</span>, des avantages cumulatifs.</>}
-            description="Dégressif sur le nombre d'équipes engagées. Sur-mesure possible au-delà de 10 équipes."
-          />
-
-          <div className="mt-12 overflow-hidden rounded-3xl shadow-soft-lg bg-white">
-            <table className="w-full text-sm">
-              <thead className="bg-ink text-cream">
-                <tr>
-                  <th className="text-left px-5 py-4 font-bold uppercase tracking-wider text-xs">Formule</th>
-                  <th className="text-left px-5 py-4 font-bold uppercase tracking-wider text-xs">Inclus</th>
-                  <th className="text-left px-5 py-4 font-bold uppercase tracking-wider text-xs">Prix / équipe</th>
-                  <th className="text-left px-5 py-4 font-bold uppercase tracking-wider text-xs">Dès 5 équipes</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-ink/10">
-                {[
-                  ["Relais 16 KM", "2 dossards · repas · t-shirts", "CHF 220", "CHF 190"],
-                  ["Pack Team-Building", "Relais + VIP + soirée privée", "CHF 480", "CHF 420"],
-                  ["Pack Plogging", "2 dossards éco · gants & sacs", "CHF 240", "CHF 210"],
-                  ["Pack Premium", "Tout inclus + branding stand", "CHF 980", "Sur devis"],
-                ].map((row, i) => (
-                  <tr key={i}>
-                    {row.map((c, j) => (
-                      <td key={j} className={`px-5 py-4 ${j === 0 ? "font-display text-base text-ink" : ""}`}>{c}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link href={INSCRIPTION_URL} className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-orange text-white font-bold uppercase tracking-wider text-xs shadow-soft hover:brightness-110 transition">
-              Demander un devis <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link href="#contact" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-ink font-bold uppercase tracking-wider text-xs shadow-soft">
-              Échanger avec notre équipe
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              { title: "Prix souvenir", body: "Tirage au sort parmi toutes les équipes inscrites — séjour bien-être.", color: "#81d4da", icon: <Trees className="h-6 w-6" /> },
-              { title: "Prix podium", body: "Trophée officiel + bons d'achat chez nos partenaires Sport.", color: "#febf2c", icon: <Award className="h-6 w-6" /> },
-              { title: "Prix éco", body: "Pour l'équipe qui a ramassé le plus de déchets en Plogging.", color: "#00a184", icon: <Leaf className="h-6 w-6" /> },
-            ].map((p) => (
-              <article key={p.title} className="rounded-3xl bg-white p-7 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition">
-                <div className="inline-grid place-items-center h-14 w-14 rounded-2xl text-white shadow-soft-sm" style={{ background: p.color }}>
-                  {p.icon}
-                </div>
-                <h3 className="mt-5 font-display text-2xl text-ink">{p.title}</h3>
-                <p className="mt-3 text-ink/70 leading-relaxed">{p.body}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -199,37 +168,21 @@ export default function EntreprisesPage() {
   );
 }
 
-function CompanyRace({
-  tags, title, description, color, photo, ctaHref,
-}: { tags: string[]; title: string; description: string; color: string; photo: string; ctaHref: string }) {
+function KeywordSlider({ title, items }: { title: string; items: { label: string; color: string }[] }) {
   return (
-    <article className="rounded-[32px] bg-white shadow-soft hover:shadow-soft-xl hover:-translate-y-1 overflow-hidden transition">
-      <div className="relative aspect-[5/3] overflow-hidden">
-        <Image src={photo} alt="" fill className="object-cover" sizes="(max-width:1024px) 80vw, 33vw" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
-        <div className="absolute top-4 left-4 flex flex-wrap gap-1.5">
-          {tags.map((t) => (
-            <span key={t} className="px-2.5 py-1 rounded-full bg-green text-white text-[10px] font-bold uppercase tracking-wider shadow-soft-sm">
-              {t}
-            </span>
-          ))}
-        </div>
-        <div className="absolute bottom-4 left-4 right-4 text-white">
-          <h3 className="font-display text-3xl md:text-4xl leading-[0.95] drop-shadow-md">{title}</h3>
-        </div>
+    <div className="mt-14">
+      <p className="text-[11px] uppercase tracking-[0.22em] font-bold text-ink/60 mb-5">{title}</p>
+      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-4 -mx-5 px-5 md:-mx-10 md:px-10">
+        {items.map((it) => (
+          <div
+            key={it.label}
+            className="snap-start shrink-0 w-[240px] md:w-[280px] aspect-[5/4] rounded-[28px] p-6 flex items-end shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition text-white"
+            style={{ background: it.color }}
+          >
+            <p className="font-display text-2xl md:text-3xl leading-[0.95]">{it.label}</p>
+          </div>
+        ))}
       </div>
-
-      <div className="p-6">
-        <p className="text-sm text-ink/70 leading-relaxed">{description}</p>
-        <div className="mt-5 grid grid-cols-2 gap-2.5">
-          <Link href="/epreuves" className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-cream text-ink hover:bg-ink hover:text-cream font-bold uppercase tracking-wider text-xs transition">
-            Infos
-          </Link>
-          <Link href={ctaHref} className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-white font-bold uppercase tracking-wider text-xs shadow-soft-sm hover:brightness-110 transition" style={{ background: color }}>
-            Inscription
-          </Link>
-        </div>
-      </div>
-    </article>
+    </div>
   );
 }

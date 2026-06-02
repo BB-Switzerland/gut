@@ -20,13 +20,13 @@ export default function Home() {
         eyebrow="Samedi 05 septembre 2026"
         title={
           <>
-            Genève <span className="text-orange">hors</span>
-            <br /> des sentiers <br/> battus
+            Genève et sa <span className="text-orange">Vieille-Ville</span>
+            <br /> hors des sentiers battus !
           </>
         }
-        subtitle="Découvre la face cachée de Genève et de sa Vieille-Ville en t'aventurant sur des sentiers natures et bitumes insoupçonnés. Running & walking — 6, 9, 16 km."
+        subtitle="Découvre Genève et de sa Vieille-Ville autrement, dans un format dynamique et convivial qui t'emmène sur des parcours inattendus, entre nature et bitume."
         buttons={[
-          { label: "Résultats 2025", href: RESULTS_URL, color: "orange" },
+          { label: "Résultats", href: RESULTS_URL, color: "orange" },
           { label: "Photos 2025", href: PHOTOS_URL, color: "blue" },
         ]}
       />
@@ -54,10 +54,20 @@ export default function Home() {
                 </span>
               </div>
 
-              <div className="lg:col-span-7 grid grid-cols-3 gap-6 md:gap-10">
-                <Stat color="#00a184" value={3500} label="Coureurs attendus" />
-                <Stat color="#7d7ebc" value={180} label="Bénévoles" />
-                <Stat color="#febf2c" value={7} label="Épreuves" />
+              <div className="lg:col-span-7 flex flex-col justify-center">
+                <p className="text-[11px] uppercase tracking-[0.22em] font-bold text-orange mb-3">Samedi 05 septembre</p>
+                <h2 className="font-display text-3xl md:text-4xl xl:text-5xl text-ink leading-[1.05]">
+                  Découvre Genève autrement.
+                </h2>
+                <p className="mt-4 text-ink/75 text-base md:text-lg leading-relaxed max-w-xl">
+                  Un format dynamique et convivial qui t'emmène sur des parcours inattendus, entre nature et bitume.
+                </p>
+                <div className="mt-6">
+                  <Link href="/evenement" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-orange text-white shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5 transition font-bold uppercase tracking-wider text-xs md:text-sm">
+                    Programme 2026
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </Reveal>
@@ -162,14 +172,15 @@ export default function Home() {
                 Village<br />départ
               </h2>
               <p className="mt-6 text-base md:text-lg max-w-xl text-cream/90">
-                Coureur ou accompagnant : venez profiter. Ouvert de 16h00 à 21h30. Espace lounge & DJs 80's, Latino &
-                All Style, le tout en plein air sur la Plaine de Plainpalais.
+                16h – 21h30 : le Village départ t'attend ! Coureurs et accompagnants, profitez d'animations,
+                dont un espace lounge et de DJs sets Latino & All Style, le tout en plein air sur l'esplanade
+                du Bois-de-La-Bâtie.
               </p>
               <Link
                 href="/evenement"
                 className="inline-flex items-center gap-2 mt-6 px-7 py-3.5 rounded-full bg-orange text-white font-bold uppercase tracking-wider text-xs md:text-sm shadow-soft-lg hover:brightness-110 hover:-translate-y-0.5 transition"
               >
-                Découvrez le programme 2026
+                Programme 2026
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -178,19 +189,67 @@ export default function Home() {
         <FinishStripe height={6} />
       </section>
 
-      {/* Animations / Repas reveal */}
-      <section className="py-20 md:py-28">
+      {/* Animations — slider 4 mots-clés */}
+      <section className="py-16 md:py-20">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <SectionHeader
+            eyebrow="Village départ"
+            title={<>Animations <span className="text-orange">non-stop</span>.</>}
+            description="Espace lounge, DJ sets, partenaires & photobooth — l'ambiance du GUT-Village pendant toute la soirée."
+            accent="orange"
+          />
           <VillageReveal
             items={[
-              { title: "Animations", caption: "Ambiance", color: "#ec6436", photo: "/figma/photo-village-1.jpg",
-                body: <>DJs 80's, Latino & All Style. Animations enfants, scène ouverte et show musical jusqu'à 21h30.</> },
-              { title: "Repas", caption: "Saveurs locales", color: "#00a184", photo: "/figma/photo-village-2.jpg",
-                body: <ul className="space-y-1.5"><li>• Assiette genevoise — terroir</li><li>• Salade fraîcheur</li><li>• Burger 100% suisse</li></ul> },
-              { title: "DJ", caption: "On the decks", color: "#7d7ebc", photo: "/figma/photo-village-1.jpg",
-                body: <>Trois sets — 80's revival, Latino party, All Style finale jusqu'au coucher du soleil.</> },
-              { title: "Stands", caption: "Partenaires", color: "#febf2c", photo: "/figma/photo-village-2.jpg",
-                body: <>Plus de 25 stands : équipementiers, marques locales, alimentation saine et associations partenaires.</> },
+              { title: "Espace lounge", caption: "Ambiance", color: "#ec6436", photo: "/figma/photo-village-1.jpg",
+                body: <>Zone détente plein air, transats et coin tranquille pour récupérer avant ou après la course.</> },
+              { title: "DJs", caption: "On the decks", color: "#7d7ebc", photo: "/figma/photo-village-2.jpg",
+                body: <>Latino & All Style en plein air, du début à 21h30. Le bouquet final.</> },
+              { title: "Stands partenaires", caption: "Découverte", color: "#00a184", photo: "/figma/photo-village-1.jpg",
+                body: <>Équipementiers, marques locales, associations engagées — testez, échangez, repartez équipés.</> },
+              { title: "Photobooth", caption: "Souvenir", color: "#febf2c", photo: "/figma/photo-village-2.jpg",
+                body: <>Repartez avec votre photo finisher imprimée. Fond GUT 2026 garanti.</> },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Repas — 2 reveal cards menu */}
+      <section className="py-16 md:py-20 bg-cream">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="grid lg:grid-cols-12 gap-6 items-end mb-10">
+            <div className="lg:col-span-8">
+              <SectionHeader
+                eyebrow="Village départ"
+                title={<>Repas <span className="text-orange">dès 18h00</span>.</>}
+                description="Saveurs locales en partenariat avec un producteur de Jussy. Survolez pour découvrir le menu et les tarifs."
+                accent="orange"
+              />
+            </div>
+            <div className="lg:col-span-4 flex lg:justify-end">
+              <Link href="mailto:inscription@runningeneva.ch" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-orange text-white font-bold uppercase tracking-wider text-xs md:text-sm shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5 transition">
+                Je réserve
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+          <VillageReveal
+            items={[
+              { title: "Assiette Genevoise", caption: "Plat signature", color: "#ec6436", photo: "/figma/photo-village-2.jpg",
+                body: (
+                  <div className="space-y-2 text-sm">
+                    <p>½ saucisse de veau grillée Origine Suisse</p>
+                    <p>¼ de poulet rôti IPS</p>
+                    <p>150 g pommes de terre rissolées (GRTA) — producteur de Jussy</p>
+                    <p className="pt-2 font-bold">CHF 19.50 participants · CHF 23.– accompagnants</p>
+                  </div>
+                ) },
+              { title: "Salade fraîcheur", caption: "Option légère", color: "#00a184", photo: "/figma/photo-village-1.jpg",
+                body: (
+                  <div className="space-y-2 text-sm">
+                    <p>Roquette, salade, fromage italien, tomates</p>
+                    <p className="pt-2 font-bold">CHF 12.– participants · CHF 15.– accompagnants</p>
+                  </div>
+                ) },
             ]}
           />
         </div>
